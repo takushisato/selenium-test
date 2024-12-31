@@ -5,30 +5,40 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
+import os
+from dotenv import load_dotenv
 
+
+# 環境変数からXの情報を読み込み
+load_dotenv()
+account_name = os.getenv('ACCOUNT_NAME')
+password = os.getenv('PASSWORD')
+
+# ChromeDriverの設定
 service = Service(executable_path='chromedriver')
-
-# ログ出力をオフ
 options = webdriver.ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-
 driver = webdriver.Chrome(service=service, options=options)
 
-# Googleでseleniumを検索
-driver.get('https://www.google.com')
-WebDriverWait(driver, 5).until(
-    EC.presence_of_element_located((By.CLASS_NAME, 'gLFyf'))
-)
-input_element = driver.find_element(By.CLASS_NAME, 'gLFyf')
-input_element.send_keys('selenium' + Keys.ENTER)
+# Xのログイン画面を開く
+driver.get('https://x.com/i/flow/login')
 
-# 検索結果をクリック
-WebDriverWait(driver, 5).until(
-    EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'selenium'))
-)
-link = driver.find_element(By.PARTIAL_LINK_TEXT, 'selenium')
-link.click()
+try:
+    # アカウント入力画面まで待機。開いたらアカウント名の入力
+    input_account_name = WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.XPATH, '//input[@name="text"]'))
+    )
+    input_account_name.send_keys(account_name)
+    input_account_name.send_keys(Keys.RETURN)
 
-# 10秒後に閉じる
-time.sleep(10)
-driver.quit()
+    # パスワード画面まで待機。開いたらパスワードの入力
+    input_password = WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.XPATH, '//input[@name="password"]'))
+    )
+    input_password.send_keys(password)
+    input_password.send_keys(Keys.RETURN)
+
+finally:
+    # 10秒後にブラウザを閉じる
+    time.sleep(10)
+    driver.quit()
