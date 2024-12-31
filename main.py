@@ -40,8 +40,8 @@ try:
     input_password.send_keys(password)
     input_password.send_keys(Keys.RETURN)
 
-    # ログインが完了するまで10秒待機
-    time.sleep(10)
+    # ログインが完了するまで5秒待機
+    time.sleep(5)
 
     # DM送信先のユーザーのHOME画面を開く
     to_account_home = 'https://x.com/' + to_account
@@ -53,7 +53,7 @@ try:
     )
     dm_button.click()
 
-    # 待機
+    # 念のため待機
     time.sleep(5)
 
     # メッセージ入力フィールドを探して入力
