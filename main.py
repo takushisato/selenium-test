@@ -53,11 +53,14 @@ try:
     )
     dm_button.click()
 
-    # メッセージを送信
+    # 待機
+    time.sleep(5)
+
+    # メッセージ入力フィールドを探して入力
     message_box = WebDriverWait(driver, 20).until(
-        EC.presence_of_element_located((By.XPATH, '//textarea[@placeholder="Start a new message"]'))  # メッセージ入力欄を特定
+        EC.presence_of_element_located((By.CSS_SELECTOR, '[data-testid="dmComposerTextInput"]'))
     )
-    message = "こんにちは！自動メッセージです。"
+    message = "お久しぶりです"  # DM本文
     message_box.send_keys(message)
     message_box.send_keys(Keys.RETURN)
 
