@@ -10,6 +10,8 @@ https://googlechromelabs.github.io/chrome-for-testing/#stable
 
 ダウンロード後、zipファイルを解凍し chromedriver（chromedriver.exe ）を、ルートディレクトリ直下に置いてください。
 
+（main.pyと同じディレクトリ）
+
 <br>
 
 ## 環境のインストール
@@ -32,11 +34,11 @@ cp .example.env .env
 
 <br>
 
-FROM_ACCOUNT=送信元アカウント名
+FROM_ACCOUNT=  送信元アカウント名
 
-PASSWORD=送信元パスワード
+PASSWORD=  送信元パスワード
 
-TO_ACCOUNT=送信先アカウント名
+TO_ACCOUNT=  送信先アカウント名
 
 <br>
 
