@@ -47,20 +47,19 @@ try:
     to_account_home = 'https://x.com/' + to_account
     driver.get(to_account_home)
 
+    # DMボタンを探してクリック。DM画面へ遷移
+    dm_button = WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, '[data-testid="sendDMFromProfile"]'))
+    )
+    dm_button.click()
 
-    # DMボタンを探してクリック
-    # dm_button = WebDriverWait(driver, 20).until(
-    #     EC.presence_of_element_located((By.XPATH, '//div[@aria-label="Message"]'))  # DMボタンを特定
-    # )
-    # dm_button.click()
-    #
-    # # メッセージを送信
-    # message_box = WebDriverWait(driver, 20).until(
-    #     EC.presence_of_element_located((By.XPATH, '//div[@aria-label="Message body"]'))  # メッセージ入力欄を特定
-    # )
-    # message = "こんにちは！自動メッセージです。"
-    # message_box.send_keys(message)
-    # message_box.send_keys(Keys.RETURN)
+    # メッセージを送信
+    message_box = WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.XPATH, '//textarea[@placeholder="Start a new message"]'))  # メッセージ入力欄を特定
+    )
+    message = "こんにちは！自動メッセージです。"
+    message_box.send_keys(message)
+    message_box.send_keys(Keys.RETURN)
 
 finally:
     # 10秒後にブラウザを閉じる
