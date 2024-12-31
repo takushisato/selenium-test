@@ -10,6 +10,7 @@ https://googlechromelabs.github.io/chrome-for-testing/#stable
 
 ダウンロード後、zipファイルを解凍し chromedriver（chromedriver.exe ）を、ルートディレクトリ直下に置いてください。
 
+<br>
 
 ## 環境のインストール
 
@@ -18,6 +19,8 @@ chromedriver を設置したら、下記コマンドで環境をインストー�
 ```
 pip install -r requirements.txt
 ```
+
+<br>
 
 ## 環境変数の設置
 
@@ -35,6 +38,7 @@ PASSWORD=送信元パスワード
 
 TO_ACCOUNT=送信先アカウント名
 
+<br>
 
 ## 実行コマンド
 
