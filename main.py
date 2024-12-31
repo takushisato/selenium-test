@@ -21,5 +21,14 @@ WebDriverWait(driver, 5).until(
 )
 input_element = driver.find_element(By.CLASS_NAME, 'gLFyf')
 input_element.send_keys('selenium' + Keys.ENTER)
+
+# 検索結果をクリック
+WebDriverWait(driver, 5).until(
+    EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, 'selenium'))
+)
+link = driver.find_element(By.PARTIAL_LINK_TEXT, 'selenium')
+link.click()
+
+# 10秒後に閉じる
 time.sleep(10)
 driver.quit()
